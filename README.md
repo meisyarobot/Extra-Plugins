@@ -11,7 +11,7 @@
 
 
 ### 🖇 VPS Deployment
-- Get your [Necessary Variables](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
+- Get your [Necessary Variables](https://github.com/meisyarobot/Extra-Plugins/blob/main/sample.env)
 - clone repo : `git clone https://github.com/TheTeamVivek/YukkiMusic && cd YukkiMusic`
 - Setup by : `bash setup`
 - Install tmux to keep running your bot when you close the terminal by :
