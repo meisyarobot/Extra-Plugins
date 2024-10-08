@@ -1,5 +1,5 @@
 from pyrogram import filters
-from pyrogram.enums import ChatType
+from pyrogram.enums import ChatType, ChatMemberStatus
 
 from strings import get_string
 from YukkiMusic import app
@@ -7,18 +7,29 @@ from YukkiMusic.utils import Yukkibin
 from YukkiMusic.utils.database import get_assistant, get_lang
 
 
+async def is_admin(client, message):
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    return chat_member.status in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]
+
+
 @app.on_message(
-    filters.command(["vcuser", "vcusers", "vcmember", "vcmembers"]) & filters.admin
+    filters.command(["vcuser", "vcusers", "vcmember", "vcmembers"])
 )
 async def vc_members(client, message):
+    if not await is_admin(client, message):
+        await message.reply_text("Kamu bukan admin!")
+        return
+
     try:
         language = await get_lang(message.chat.id)
         _ = get_string(language)
     except:
         _ = get_string("en")
+    
     msg = await message.reply_text(_["V_C_1"])
     userbot = await get_assistant(message.chat.id)
     TEXT = ""
+    
     try:
         async for m in userbot.get_call_members(message.chat.id):
             chat_id = m.chat.id
@@ -50,6 +61,7 @@ async def vc_members(client, message):
                 is_left,
             )
             TEXT += "\n\n"
+        
         if len(TEXT) < 4000:
             await msg.edit(TEXT or _["V_C_3"])
         else:
