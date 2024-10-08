@@ -1,7 +1,7 @@
-# Extra Plugins For [YukkiMusic](https://github.com/TheTeamVivek/YukkiMusic)
+# Extra Plugins For [YukkiMusic](https://github.com/TeamYukki/YukkiMusicBot)
 
 
-## Deployment for [YukkiMusic](https://github.com/TheTeamVivek/YukkiMusic)
+## Deployment for [YukkiMusic](https://github.com/TeamYukki/YukkiMusicBot)
 
 #### 🚀 Heroku Deployment
 
